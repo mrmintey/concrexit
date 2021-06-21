@@ -1,0 +1,5 @@
+#! /usr/bin/env nix-shell
+#! nix-shell -i bash -p terraform
+
+export AWS_PROFILE="thalia"
+

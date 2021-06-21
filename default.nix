@@ -4,12 +4,11 @@
 , uwsgi
 , pkgs
 , writeScript
-, src
 , version ? "git"
 }:
 let
   concrexit-env = poetry2nix.mkPoetryEnv {
-    projectDir = src;
+    projectDir = ./.;
     # The overrides we do here are patches copied from nixpkgs, some patches are also included
     # in poetry2nix but for Pillow they don't work well enough and python-magic isn't included
     overrides = poetry2nix.overrides.withDefaults (
@@ -23,7 +22,7 @@ let
   };
 
   # Location of the manage.py script
-  manage-py = "${src}/website/manage.py";
+  manage-py = ./website/manage.py;
 
   # We want to enable the python3 plugin for uwsgi, so we override here
   uwsgi-python = uwsgi.override { plugins = [ "python3" ]; python3 = concrexit-env; };
@@ -38,7 +37,7 @@ let
       --threads 5 \
       --processes 5 \
       --pythonpath ${concrexit-env}/${concrexit-env.sitePackages} \
-      --chdir ${src}/website \
+      --chdir ${./website} \
       --module thaliawebsite.wsgi:application \
       --log-master \
       --harakiri 1800 \
@@ -55,7 +54,8 @@ let
 in
 stdenv.mkDerivation {
   pname = "concrexit";
-  inherit version src;
+  version = "35.1";
+  src = ./.;
 
   buildInputs = [ concrexit-env file ];
 
@@ -86,7 +86,7 @@ stdenv.mkDerivation {
 
     cp -r ${concrexit-env}/* $out
     cp -r static $out
-    ln -s ${src} $out/src
+    ln -s ${./.} $out/src
   '';
 
   # So we can access the environment for shell.nix

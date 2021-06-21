@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, modulesPath, ... }:
 let
   # Aliases so other definitions are shorter
   mapAttrsToList = lib.attrsets.mapAttrsToList;
@@ -50,7 +50,7 @@ let
 
 in
 {
-  imports = [ ./timed-command.nix ];
+  imports = [ ./timed-command.nix "${modulesPath}/virtualisation/amazon-image.nix" ];
 
   # The options we define here can be applied in any of the included configuration files.
   # The defaults should be good though.
@@ -110,6 +110,7 @@ in
   };
 
   config = {
+    ec2.hvm = true;
     # Allow the concrexit-manage command to be used as pkgs.concrexit-manage
     nixpkgs.overlays = [
       (_self: _super: {
@@ -166,7 +167,9 @@ in
     services.openssh.enable = true;
 
     # Make concrexit user
-    users.users.${cfg.user} = { };
+    users.users.${cfg.user} = { 
+      isSystemUser = true;
+    };
 
     systemd.services = {
       # Create the directory that concrexit uses to place files and the secrets
