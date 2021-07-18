@@ -49,6 +49,10 @@ class EventRegistration(models.Model):
     )
 
     @property
+    def price(self):
+        return self.event.price
+
+    @property
     def information_fields(self):
         fields = self.event.registrationinformationfield_set.all()
         return [
