@@ -41,16 +41,30 @@ def get_automatic_mailinglists():
 class MailingList(models.Model):
     """Model describing mailing lists."""
 
+    name_validators = [
+        validators.RegexValidator(
+            regex=r"^[a-zA-Z0-9-]+$", message=_("Enter a simpler name")
+        ),
+        validators.RegexValidator(
+            regex=r"^[abuse|admin|administrator|hostmaster|majordomo|postmaster|root|ssl\-admin|webmaster]$",
+            message=_("The entered name is a reserved value"),
+        ),
+    ]
+
     name = models.CharField(
         verbose_name=_("Name"),
         max_length=60,
-        validators=[
-            validators.RegexValidator(
-                regex=r"^[a-zA-Z0-9-]+$", message=_("Enter a simpler name")
-            )
-        ],
+        validators=name_validators,
         unique=True,
         help_text=_("Enter the name for the list (i.e. name@thalia.nu)."),
+    )
+
+    active_gsuite_name = models.CharField(
+        verbose_name=_("Active GSuite name"),
+        max_length=60,
+        validators=name_validators,
+        blank=True,
+        null=True,
     )
 
     description = models.TextField(
