@@ -10,7 +10,7 @@
     <section class="page-section" id="payments-account-overview">
         <div class="container">
             {% if not error %}
-                <h1 class="text-center section-title">{% trans "authorise"|capfirst %} {{ application.name }}</h1>
+                <h1 class="section-title">{% trans "authorise"|capfirst %} {{ application.name }}</h1>
 
                 <form method="post">
                     {% csrf_token %}
@@ -38,7 +38,7 @@
                 </form>
 
             {% else %}
-                <h1 class="text-center section-title">{% trans "error"|capfirst %}</h1>
+                <h1 class="section-title">{% trans "error"|capfirst %}</h1>
                 <h4 class="text-center">{{ error.error }}</h4>
                 <p class="text-center">{{ error.description }}</p>
             {% endif %}

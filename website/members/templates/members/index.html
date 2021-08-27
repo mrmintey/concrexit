@@ -8,9 +8,9 @@
     {% with keys=keywords|join:" " %}
         <section class="page-section" id="members-directory">
             <div class="container">
-                <h1 class="text-center section-title">{% trans "members"|capfirst %}</h1>
+                <h1 class="section-title">{% trans "members"|capfirst %}</h1>
 
-                <p class="text-center">
+                <p>
                     {% blocktrans trimmed %}
                         Ever wondered what the name of that person in the back row of the lecture room is?
                         There is a high probability that this person is a member of Thalia,
@@ -18,7 +18,7 @@
                     {% endblocktrans %}
                 </p>
 
-                <form class="search-form form-inline col-12 col-lg-6 offset-lg-3" method="get"
+                <form class="search-form form-inline col-12 col-lg-6 offset-lg-3 mt-4 mb-4" method="get"
                       action="#members-directory">
                     <input class="form-control col-12 col-md-9" name="keywords" type="text" value="{{ keys|default_if_none:'' }}"
                            placeholder="{% trans "Who are you looking for?" %}"/>
@@ -26,7 +26,7 @@
                            value="{% trans "Search" %}"/>
                 </form>
 
-                <ul class="nav nav-tabs justify-content-center mt-4">
+                <ul class="nav nav-tabs mt-4">
                     <li class="nav-item">
                         <a class="nav-link{% if not filter or filter == "all" %} active{% endif %}"
                            href="{% url 'members:index' %}{% urlparams keywords=keys %}#members-directory">
@@ -82,7 +82,7 @@
                     </div>
 
                     <nav>
-                        <ul class="pagination justify-content-center mt-4">
+                        <ul class="pagination mt-4">
                             {% if page_obj.has_previous %}
                                 <li class="page-item">
                                     <a class="page-link"

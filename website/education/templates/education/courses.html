@@ -9,9 +9,9 @@
 {% block body %}
     <section class="page-section" id="education-courses">
         <div class="container">
-            <h1 class="text-center section-title">{% trans "Course overview" %}</h1>
+            <h1 class="section-title">{% trans "Course overview" %}</h1>
 
-            <p class="text-center">
+            <p>
                 {% blocktrans trimmed %}
                     This overview contains all courses for which Thalia has
                     exams, summaries or other documents. Select a course to
@@ -22,12 +22,12 @@
                 {% endblocktrans %}
             </p>
 
-            <p class="text-center">
+            <p>
                 {% blocktrans trimmed %}
                     You can submit your own exams and summaries!<br />
                     Better even, you might even get a monetary reward if you submit a summary:
                 {% endblocktrans %}
-                <ul class="text-center list-unstyled">
+                <ul class="list-unstyled">
                     <li>{% trans "In the current language of the course" %}</li>
                     <li>{% trans "Adds significant information that was not already present in the summary overview" %}</li>
                     <li>{% trans "Corresponds to the current course" %}</li>
@@ -35,14 +35,14 @@
                 </ul>
             </p>
 
-            <p class="text-center mt-4">
+            <p class="mt-4">
                 <a class="btn btn-primary d-inline"
                    href="{% url 'education:submit-exam' %}">{% trans "Submit Exam" %}</a>
                 <a class="btn btn-primary d-inline"
                    href="{% url 'education:submit-summary' %}">{% trans "Submit Summary" %}</a>
             </p>
 
-            <ul class="nav nav-tabs justify-content-center mt-4 border-bottom-0">
+            <ul class="nav nav-tabs mt-4 border-bottom-0">
                 <li class="nav-item">
                     <a class="nav-link" data-filter="all" href="#all">
                         {% trans "all courses"|upper %}

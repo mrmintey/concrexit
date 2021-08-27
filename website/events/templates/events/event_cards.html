@@ -1,7 +1,7 @@
 {% load i18n bleach_tags alert %}
 <section id="events-cards" class="page-section">
     <div class="container">
-        <h1 class="text-center section-title">{% trans "Upcoming events" %}</h1>
+        <h1 class="section-title">{% trans "Upcoming events" %}</h1>
         <div class="row">
             {% if not events %}
                 <div class="mt-4 col-12">
@@ -38,7 +38,7 @@
                 {% endfor %}
             {% endif %}
         </div>
-        <p class="text-center">
+        <p>
             {% url 'events:index' as events_index %}
             {% blocktrans trimmed %}
                 Searching for another event? <a href="{{ events_index }}">Take a look at the entire agenda.</a>

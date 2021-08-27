@@ -9,7 +9,7 @@
 {% block body %}
     <section class="page-section" id="payments-account-overview">
         <div class="container">
-            <h1 class="text-center section-title">{% trans "payments"|capfirst %}</h1>
+            <h1 class="section-title">{% trans "payments"|capfirst %}</h1>
 
             {% if messages %}
                 {% for message in messages %}
@@ -23,7 +23,7 @@
                  </h5>
             {% endif %}
 
-            <ul class="nav nav-tabs justify-content-center mb-4">
+            <ul class="nav nav-tabs mb-4">
                 {% for filter in filters|slice:':6' %}
                     <li class="nav-item">
                         <a class="nav-link {% if filter.year == year and filter.month == month %}active{% endif %}"

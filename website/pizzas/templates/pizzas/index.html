@@ -36,7 +36,7 @@
     {% if event %}
         <section class="page-section" id="pizzas-index">
             <div class="container">
-                <h1 class="text-center section-title">
+                <h1 class="section-title">
                     {% blocktrans trimmed with title=event.title %}
                         Order food for {{ title }}
                     {% endblocktrans %}
@@ -206,7 +206,7 @@
     {% else %}
         <section class="page-section" id="pizzas-index">
             <div class="container">
-                <h1 class="text-center section-title">{% trans 'pizzas'|capfirst %}</h1>
+                <h1 class="section-title">{% trans 'pizzas'|capfirst %}</h1>
                 <p class="text-center">
                     {% trans "There is no current event for which you can order food" %}l
                 </p>
