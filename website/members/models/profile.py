@@ -168,6 +168,13 @@ class Profile(models.Model):
         max_length=4096,
     )
 
+    shoe_size = models.IntegerField(
+        verbose_name=_("Shoe size"),
+        validators=[validators.MinValueValidator(39), validators.MaxValueValidator(47)],
+        blank=True,
+        null=True,
+    )
+
     initials = models.CharField(
         max_length=20, verbose_name=_("Initials"), blank=True, null=True,
     )

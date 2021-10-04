@@ -26,6 +26,7 @@ class ProfileForm(forms.ModelForm):
             "profile_description",
             "nickname",
             "initials",
+            "shoe_size",
             "display_name_preference",
             "photo",
             "receive_optin",
@@ -90,6 +91,11 @@ class UserChangeForm(BaseUserChangeForm):
         label=_("Email address"),
         required=True,
         widget=forms.EmailInput(attrs={"class": "vTextField", "maxlength": 254}),
+    )
+    shoe_size = forms.IntegerField(
+        label=_("Shoe size"),
+        required=False,
+        widget=forms.NumberInput(attrs={"class": "vTextField", "maxlength": 2}),
     )
 
     def clean(self):
